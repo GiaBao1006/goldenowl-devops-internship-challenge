@@ -43,19 +43,19 @@ Prerequisites:
 
     Navigate to the terraform directory and apply the configuration to create the AWS infrastructure.
 
-    Navigate to the terraform directory
+    1. Navigate to the terraform directory
 
     cd terraform
 
-    Initialize Terraform
+    2. Initialize Terraform
 
     terraform init
 
-    (Optional) Plan the changes
+    3. (Optional) Plan the changes
 
     terraform plan
 
-    Apply the configuration to create the infrastructure
+    4. Apply the configuration to create the infrastructure
 
     terraform apply
 
@@ -65,19 +65,19 @@ Prerequisites:
 This is required one time to give the EC2 instances an image to pull.
 Note: You must replace [ACCOUNT_ID], [REGION], and [ECR_REPOSITORY_URL] with your actual values from the terraform output.
 
-    Navigate to the root directory (where the Dockerfile is)
+    1. Navigate to the root directory (where the Dockerfile is)
 
     cd ..
 
-    Log in to Amazon ECR
+    2. Log in to Amazon ECR
  
     aws ecr get-login-password --region [REGION] | docker login --username AWS --password-stdin [ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com
 
-    Build the Docker image (for the EC2 platform, linux/amd64)
+    3. Build the Docker image (for the EC2 platform, linux/amd64)
 
     docker buildx build --platform linux/amd64 -t [ECR_REPOSITORY_URL]:latest .
 
-    Push the image to ECR
+    4. Push the image to ECR
 
     docker push [ECR_REPOSITORY_URL]:latest
 
