@@ -92,7 +92,8 @@ CD (Continuous Deployment): Automatically builds, pushes, and deploys the applic
 Create a new user in the IAM console with AmazonEC2ContainerRegistryFullAccess and AutoScalingFullAccess policies. Then, create an Access Key and Secret Key for this user and add them to the GitHub repository's Secrets (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, ASG_NAME). This is required for the CD pipeline to work.
 
 ## Clean all
-cd terraform
 
-terraform destroy #Destroy the Terraform-managed infrastructure
+    cd terraform
+
+    terraform destroy #Destroy the Terraform-managed infrastructure
 
