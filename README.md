@@ -41,23 +41,23 @@ Prerequisites:
 
 ### 1. Terraform (Infrastructure):
 
-Navigate to the terraform directory and apply the configuration to create the AWS infrastructure.
+    Navigate to the terraform directory and apply the configuration to create the AWS infrastructure.
 
-Navigate to the terraform directory
+    Navigate to the terraform directory
 
-cd terraform
+    cd terraform
 
-Initialize Terraform
+    Initialize Terraform
 
-terraform init
+    terraform init
 
-(Optional) Plan the changes
+    (Optional) Plan the changes
 
-terraform plan
+    terraform plan
 
-Apply the configuration to create the infrastructure
+    Apply the configuration to create the infrastructure
 
-terraform apply
+    terraform apply
 
 
 ### 2. Docker (Manual Build & Push for First Deployment):
@@ -65,21 +65,21 @@ terraform apply
 This is required one time to give the EC2 instances an image to pull.
 Note: You must replace [ACCOUNT_ID], [REGION], and [ECR_REPOSITORY_URL] with your actual values from the terraform output.
 
-Navigate to the root directory (where the Dockerfile is)
+    Navigate to the root directory (where the Dockerfile is)
 
-cd ..
+    cd ..
 
-Log in to Amazon ECR
+    Log in to Amazon ECR
  
-aws ecr get-login-password --region [REGION] | docker login --username AWS --password-stdin [ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com
+    aws ecr get-login-password --region [REGION] | docker login --username AWS --password-stdin [ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com
 
-Build the Docker image (for the EC2 platform, linux/amd64)
+    Build the Docker image (for the EC2 platform, linux/amd64)
 
-docker buildx build --platform linux/amd64 -t [ECR_REPOSITORY_URL]:latest .
+    docker buildx build --platform linux/amd64 -t [ECR_REPOSITORY_URL]:latest .
 
-Push the image to ECR
+    Push the image to ECR
 
-docker push [ECR_REPOSITORY_URL]:latest
+    docker push [ECR_REPOSITORY_URL]:latest
 
 
 ### 3. GitHub CI/CD Pipeline:
