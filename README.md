@@ -26,6 +26,7 @@ Your mission, should you choose to accept it, is to craft a CI job that:
 
 ## Architecture Diagram
 
+![Architecture Diagram](docs/Architecture.png)
 
 ## How To Deploy
 Prerequisites:
