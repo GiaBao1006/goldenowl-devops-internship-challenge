@@ -32,8 +32,11 @@ Your mission, should you choose to accept it, is to craft a CI job that:
 
 ## How To Deploy
 Prerequisites:
+
     Terraform CLI installed.
+    
     AWS CLI installed and configured.
+    
     Docker installed and running.
 
 ### 1. Terraform (Infrastructure):
