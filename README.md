@@ -1,7 +1,5 @@
 # Golden Owl DevOps Internship - Technical Test
-At Golden Owl, we believe in treating infrastructure as code and automating resource provisioning to the fullest extent possible. 
-
-In this technical test, we challenge you to create a robust CI build pipeline using GitHub Actions. You have the freedom to complete this test in your local environment.
+Submitted by: Nguyen Gia Bao (GiaBao1006)
 
 ## Your Mission 🌟
 Your mission, should you choose to accept it, is to craft a CI job that:
@@ -10,36 +8,51 @@ Your mission, should you choose to accept it, is to craft a CI job that:
 3. Establishes an automated CI/CD build process using GitHub Actions workflow and a container registry service such as DockerHub or Amazon Elastic Container Registry (ECR) or similar services.
 4. Initiates CI tests automatically when changes are pushed to the feature branch on GitHub.
 5. Utilizes GitHub Actions for Continuous Deployment (CD) to deploy the application to major cloud providers like AWS EC2, AWS ECS or Google Cloud (please submit the deployment link).
-## Nice to have 🎨
-We would be genuinely delighted if you could complement your submission with a `visual flow diagram`, illustrating the sequence of tasks you performed, including the implementation of a `load balancer` and `auto scaling` for the deployed application. This additional touch would greatly enhance our understanding and appreciation of your work.
 
-Reference tools for creating visual flow diagrams:
-- https://www.drawio.com/
-- https://excalidraw.com/
-- https://www.eraser.io/
-  
-Including a visual representation of your workflow will provide valuable insights into your approach and make your submission stand out. Thank you for considering this enhancement! 
-## The Bigger Picture 🌏
-This test is designed to evaluate your ability to implement modern automated infrastructure practices while demonstrating a basic understanding of Docker containers. In your solution, we encourage you to prioritize readability, maintainability, and the principles of DevOps.
+## Tech Stack
+1. Cloud: AWS (Amazon Web Services)
+        Compute: EC2 (Elastic Compute Cloud)
+        Networking: VPC, Subnets, Route Tables, Internet Gateway, ALB
+        Scaling & HA: Auto Scaling Group (ASG)
+        Container Registry: ECR (Elastic Container Registry)
 
- ## Submission Guidelines 📬
-Your solution should be showcased in a public GitHub repository. We encourage you to commit early and often. We prefer to see a history of iterative progress rather than a single massive push. When you've completed the assignment, kindly share the URL of your repository with us.
+2. Infrastructure as Code: Terraform
 
- ## Running the Node.js Application Locally  🏃‍♂️
- This is a Node.js application, and running it locally is straightforward:
-- Navigate to the `src` directory by executing `cd src`.
-- Install the project's dependencies listed in the package.json file by running `npm i`.
-- Execute `npm test` to run the application's tests.
-- Start the HTTP server with `npm start`.
+3. Containerization: Docker
 
-You can test it using the following command:
-  
-```shell
-curl localhost:3000
-```
-You should receive the following response:
-```json
-{"message":"Welcome warriors to Golden Owl!"}
-```
+4. CI/CD: GitHub Actions
 
-Are you ready to embark on this DevOps journey with us? 🚀 Best of luck with your assignment! 🌟
+5. Application: Node.js
+
+## Architecture Diagram
+
+
+
+## How To Deploy
+Prerequisites:
+    Terraform CLI installed.
+    AWS CLI installed and configured.
+    Docker installed and running.
+
+1. Terraform:
+cd terraform #Move to folder Terra
+terraform init #Initialize Terraform in the current directory
+terraform plan #Generate and show an execution plan
+terraform apply #Apply the changes
+
+2. Docker:
+cd .. #Move to folder root
+aws ecr get-login-password --region [REGION] | docker login --username AWS --password-stdin [ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com #Log in to AWS ECR
+docker buildx build --platform linux/amd64 -t [ECR_REPOSITORY_URL]:latest . #Build the Docker image (M1 platform)
+docker push [ECR_REPOSITORY_URL]:latest #Push the image to ECR
+
+3. GitHub CI/CD Pipeline:
+Using GitHub Actions
+    CI (Continuous Integration): Automatically runs npm test on every Pull Request.
+    CD (Continuous Deployment): Automatically builds, pushes, and deploys the application with zero-downtime on every merge to the master branch.
+
+# Important
+Create new user in IAM console, then create Access key and Secret Key to put in GitHub Actions. It's use for CD.
+
+## Clean all
+terraform destroy #Destroy the Terraform-managed infrastructure
